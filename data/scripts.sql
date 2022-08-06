@@ -42,7 +42,8 @@ AND star_rating>=4;
 
 --Answer 4
 
-/* 6.	Show the average star rating for companies in each state. The output should show the state as `state` and the average rating for the state as `avg_rating`. Which state shows the highest average rating? */
+/* 6.	Show the average star rating for companies in each state. The output should show the state as `state` and the average rating for the state as `avg_rating`. 
+Which state shows the highest average rating? */
 SELECT location,AVG(star_rating) as avg_rating
 FROM data_analyst_jobs
 GROUP BY location
@@ -63,15 +64,29 @@ WHERE location='CA';
 
 --Answer 230
 
-/* 9.	Find the name of each company and its average star rating for all companies that have more than 5000 reviews across all locations. How many companies are there with more that 5000 reviews across all locations? */
+/* 9.	Find the name of each company and its average star rating for all companies that have more than 5000 reviews across all locations. 
+How many companies are there with more that 5000 reviews across all locations? */
+SELECT company, AVG(star_rating) as avg_rating
+FROM data_analyst_jobs
+WHERE review_count>=5000
+GROUP BY company;
 
---Answer
+--Answer 40
 
-/* 10.	Add the code to order the query in #9 from highest to lowest average star rating. Which company with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating? */
+/* 10.	Add the code to order the query in #9 from highest to lowest average star rating.
+Which company with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating? */
+SELECT company, AVG(star_rating) as avg_rating
+FROM data_analyst_jobs
+WHERE review_count>=5000
+GROUP BY company
+ORDER BY avg_rating DESC;
 
---Answer
+--Answer General Motors 4.19999
 
 /* 11.	Find all the job titles that contain the word ‘Analyst’. How many different job titles are there? */
+SELECT COUNT(title)
+FROM data_analyst_jobs
+CONTAINS 'Analyst';
 
 --Answer
 
